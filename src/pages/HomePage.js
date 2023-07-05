@@ -31,15 +31,18 @@ const HomePage = () => {
 		setOpenConfirm(true);
 		setSelectedCar(cars.find((car) => car._id === id));
 	};
+
 	const handleDelete = async () => {
-		try {
-			const res = await apiService.delete(`/car/${selectedCar._id}`);
-			getData();
-		} catch (err) {
-			console.log(err);
-		}
-	};
+    try {
+      const res = await apiService.delete(`/car/${selectedCar._id}`);
+      getData();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 	const name = selectedCar?.release_date + ' ' + selectedCar?.make + ' ' + selectedCar?.model;
+
 	const columns = [
 		{ field: 'name', headerName: 'Name', flex: 3, minWidth: 120 },
 		{ field: 'style', headerName: 'Style', flex: 1, minWidth: 120 },
@@ -74,11 +77,13 @@ const HomePage = () => {
 		price: car.price,
 		release_date: car.release_date,
 	}));
+	
 	const getData = async () => {
-		const res = await apiService.get(`/car?page=${page}`);
-		setCars(res.cars);
-		setTotalPages(res.total);
-	};
+    const res = await apiService.get(`/car?page=${page}`);
+    setCars(res.cars);
+    setTotalPages(res.total);
+  };
+	
 	useEffect(() => {
 		getData();
 	}, [page]);
