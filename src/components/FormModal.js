@@ -46,20 +46,18 @@ export default function FormModal({ open, handleClose, mode, selectedCar, modalK
   };
   const handleEdit = async (newForm) => {
     try {
-      const res = await apiService.put(`/car/${selectedCar?._id}`, {
+      await apiService.put(`/car/${selectedCar?._id}`, {
         ...newForm,
       });
       refreshData();
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
   };
   const handleCreate = async (newForm) => {
     try {
-      const res = await apiService.post("/car", { ...newForm });
+      await apiService.post("/car", { ...newForm });
       refreshData();
-      console.log(res);
     } catch (err) {
       console.log(err.message);
     }
