@@ -75,7 +75,7 @@ export default function FormModal({ open, handleClose, mode, selectedCar, modalK
     } else {
       if (mode === "create") handleCreate(validate.value);
       else handleEdit(validate.value);
-      // handleClose();
+      handleClose();
     }
   };
   useEffect(() => {
@@ -83,6 +83,8 @@ export default function FormModal({ open, handleClose, mode, selectedCar, modalK
       setErrors({});
       setForm(selectedCar);
     } else setForm(initial_form);
+
+    // eslint-disable-next-line
   }, [selectedCar?._id]);
 
   return (

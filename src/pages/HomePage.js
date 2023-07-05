@@ -34,7 +34,7 @@ const HomePage = () => {
 
 	const handleDelete = async () => {
     try {
-      const res = await apiService.delete(`/car/${selectedCar._id}`);
+      await apiService.delete(`/car/${selectedCar._id}`);
       getData();
     } catch (err) {
       console.log(err);
@@ -85,8 +85,10 @@ const HomePage = () => {
   };
 	
 	useEffect(() => {
-		getData();
-	}, [page]);
+    getData();
+
+    // eslint-disable-next-line
+  }, [page]);
 
 	return (
 		<Container maxWidth="lg" sx={{ pb: 3 }}>
